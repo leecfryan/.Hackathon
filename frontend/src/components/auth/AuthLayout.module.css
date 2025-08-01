@@ -1,0 +1,32 @@
+.container {
+    min-height: 100vh;
+    background-color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #d1d5db;
+    padding: 1rem;
+    border-bottom: 2px solid #000;
+}
+
+.headerContent {
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.logo {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
