@@ -1,31 +1,6 @@
-// src/App.js - Updated with persistence
-
-import { v4 as uuidv4 } from 'uuid';
-import React, { useState, useEffect } from 'react';
-import ChatWindow from './Components/ChatWindow';
-import { 
-  initializeSocket, 
-  connectSocket, 
-  disconnectSocket, 
-  onPrivateMessage, 
-  offPrivateMessage,
-  enableMockMode 
-} from './socket/socket';
-
-// Import persistence utilities (we'll create these next)
-import { ChatStorage } from './utils/chatStorage';
-import { ChatAPI } from './services/chatAPI';
-
-const currentUser = {
-  uid: '550e8400-e29b-41d4-a716-446655440000', // ✅ John Doe's actual UUID
-  name: 'John Doe',
-  email: 'john.doe.2024@student.smu.edu.sg'
-};
-
-const dummyUser = {
-  uid: '550e8400-e29b-41d4-a716-446655440001', // ✅ Alice's actual UUID
-  name: 'Alice (SOE, Yr 2)'
-};
+import React from "react";
+import LoginPage from "./pages/LoginPage";
+import "./App.css";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -330,63 +305,8 @@ function App() {
   const failedMessageCount = messages.filter(msg => msg.status === 'failed').length;
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Connection status and controls */}
-      <div style={{
-        padding: '8px 16px',
-        backgroundColor: isConnected ? '#d4edda' : '#f8d7da',
-        color: isConnected ? '#155724' : '#721c24',
-        fontSize: '12px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <span>
-          {isConnected ? '🟢 Connected' : '🔴 Disconnected'}
-          {connectionError && ` - ${connectionError}`}
-        </span>
-        
-        <div style={{ display: 'flex', gap: '8px' }}>
-          {failedMessageCount > 0 && (
-            <button
-              onClick={handleRetryFailedMessages}
-              style={{
-                padding: '4px 8px',
-                fontSize: '11px',
-                backgroundColor: '#ffc107',
-                color: '#212529',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Retry Failed ({failedMessageCount})
-            </button>
-          )}
-          
-          <button
-            onClick={handleClearChat}
-            style={{
-              padding: '4px 8px',
-              fontSize: '11px',
-              backgroundColor: '#dc3545',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Clear Chat
-          </button>
-        </div>
-      </div>
-      
-      <ChatWindow 
-        user={dummyUser} 
-        messages={messages} 
-        onSend={handleSend}
-        onRetryMessage={handleRetryMessage}
-      />
+    <div className="App">
+      <LoginPage />
     </div>
   );
 }
